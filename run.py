@@ -8,17 +8,22 @@ import time
 
 # parameters and files
 var_dict = {'mu_frags': 300, 'sd_frags': 30, 'no_frags': 5000, 'psplit': 0, 'pligate': 0,
-                'd_temp': 98, 'el_temp': 50, 'cycles': 1, 'window': 80, 'fasta': "sequences/phix.fasta", 'sd_pcr': 1}
+                'd_temp': 98, 'el_temp': 50, 'cycles': 1, 'window': 80, 'sequence': "sequences/phix.fasta", 'sd_pcr': 1}
 
-# utilise fasta file
-# record = SeqIO.read(var_dict['fasta'], "fasta")
-# dna = str(record.seq)
 
-# utilise simulated DNA
-dna_filename = 'sequences/simulated_dna.txt'
-file = open(dna_filename, "r")
-dna = file.read()
-
+if ".fa" in var_dict['sequence']:
+    # utilise fasta file
+    record = SeqIO.read(var_dict['sequence'], "fasta")
+    print "Input sequence: "+str(record.name)
+    dna = str(record.seq)
+elif ".txt" in var_dict['sequence']:
+    # utilise simulated DNA
+    dna_filename = var_dict['sequence']
+    print "Input sequence: "+dna_filename[10:-4]
+    file = open(dna_filename, "r")
+    dna = file.read()
+else:
+    exit("Please provide a valid sequence file")
 
 # Add DNA to parameter dictionary
 var_dict['dna'] = dna
