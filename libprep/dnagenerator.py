@@ -53,8 +53,8 @@ def generate_dna(GC, Dsize, Pclump, dv):
 
     dna = "".join(dna)
     # save dna to file
-    #fname = self.name + "_DNA.txt"
-    #file = open(fname, "w")
-    #file.write(dna)
-    #file.close()
+    fname = "sequences/simulated_dna.txt"
+    file = open(fname, "w")
+    file.write(dna)
+    file.close()
     return dna
