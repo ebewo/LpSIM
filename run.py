@@ -5,20 +5,23 @@ from matplotlib import gridspec
 from libprep.coverage import seq, mv_coverage, gc_mv_avg, evenness
 from Bio import SeqIO
 import time
+import yaml
+from pprint import pprint
 
-# parameters and files
-var_dict = {'mu_frags': 300, 'sd_frags': 30, 'no_frags': 5000, 'psplit': 0, 'pligate': 0,
-                'd_temp': 98, 'el_temp': 50, 'cycles': 1, 'window': 80, 'sequence': "sequences/phix.fasta", 'sd_pcr': 1}
+# load parameters
+with open(r'parameters.yaml') as file:
+    parameters = yaml.load(file, Loader=yaml.FullLoader)
+print "Parameters:"
+pprint(parameters)
 
-
-if ".fa" in var_dict['sequence']:
+if ".fa" in parameters['sequence']:
     # utilise fasta file
-    record = SeqIO.read(var_dict['sequence'], "fasta")
+    record = SeqIO.read(parameters['sequence'], "fasta")
     print "Input sequence: "+str(record.name)
     dna = str(record.seq)
-elif ".txt" in var_dict['sequence']:
+elif ".txt" in parameters['sequence']:
     # utilise simulated DNA
-    dna_filename = var_dict['sequence']
+    dna_filename = parameters['sequence']
     print "Input sequence: "+dna_filename[10:-4]
     file = open(dna_filename, "r")
     dna = file.read()
@@ -26,12 +29,12 @@ else:
     exit("Please provide a valid sequence file")
 
 # Add DNA to parameter dictionary
-var_dict['dna'] = dna
+parameters['dna'] = dna
 
 # run simulator
-coverage = seq(var_dict)
-moving_coverage = mv_coverage(var_dict, coverage)
-GC = gc_mv_avg(var_dict)
+coverage = seq(parameters)
+moving_coverage = mv_coverage(parameters, coverage)
+GC = gc_mv_avg(parameters)
 E = evenness(coverage)
 df_coverage = pd.DataFrame(nu.array([list(dna),coverage]).transpose(), columns = ["base position", "coverage"])
 df_moving_coverage = pd.DataFrame(nu.array([list(dna[:-80]),GC,moving_coverage]).transpose(), columns = ["base position","GC","moving coverage"])

@@ -1,0 +1,11 @@
+sequence: "sequences/phix.fasta" # input sequence
+mu_frags: 300 # mean of fragment size distributiom
+sd_frags: 30 # standard deviation of fragment size distribution
+no_frags: 5000 # number of fragments
+psplit: 0 # splitting probabilty
+pligate: 0 # ligation probability
+d_temp: 98 # denaturation temperature
+el_temp: 50 # elongation temperature
+sd_pcr: 1  # standard deviation of PCR probability distribution
+cycles: 1 # number of PCR cycles
+window: 80 # window size for moving average of GC levels and coverage
