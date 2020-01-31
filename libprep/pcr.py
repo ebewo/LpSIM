@@ -87,5 +87,5 @@ def PCR(tmp, el_tmp, cycles, ligated_frags, sd_pcr):
                         n_elnd += 1
             else:
                 n_pcrd += 1
-
+    print "PCR complete!"
     return PCR.pcrd_frags, PCR.pcrd_fragments_cov

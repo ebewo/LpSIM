@@ -82,5 +82,5 @@ def fragment_dna(m, s, Nfrags, PsplitCG,dna):
                     [x, [d, c, sz, gc, at, "R1", "b", "!ADP", "!PCRD"]])
                 a = 1
                 nCpG += 1
-
+    print "Fragmentation complete!"
     return frags, frg
