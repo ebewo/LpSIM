@@ -1,0 +1,4 @@
+GC : 80 # GC level of sequence
+seq_size : 20000 # DNA sequence size
+pclump : 0 # clumping probability
+shuffle_opt : 0 # 0 = [no shuffle], 1 = [1 GC-rich area, 1 neutral area, 1 AT-rich area], 2 = [1 GC-rich area, 2 neutral areas,  1 AT-rich area]

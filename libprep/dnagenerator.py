@@ -23,24 +23,24 @@ def shuffle_dna2(Dsize, i):
 
     return Pa, Pc, Pg, Pt
 
-def generate_dna(GC, Dsize, Pclump, dv):
+def generate_dna(dna_parameters):
     # generate random DNA string with different probabilities(Pa,Pc,Pg,Pt)
     # for each nucleotide
     dna = []
-    Pa = (100 - GC) / 2
-    Pc = (GC / 2) + Pa
-    Pg = (GC / 2) + Pc
+    Pa = (100 - dna_parameters['GC']) / 2
+    Pc = (dna_parameters['GC'] / 2) + Pa
+    Pg = (dna_parameters['GC'] / 2) + Pc
     Pt = Pa + Pg
 
-    for i in xrange(Dsize):
-        if dv == 1:
-            Pa, Pc, Pg, Pt = shuffle_dna(Dsize, i)
-        elif dv == 2:
-            Pa, Pc, Pg, Pt = shuffle_dna2(Dsize, i)
+    for i in xrange(dna_parameters['seq_size']):
+        if dna_parameters['shuffle_opt'] == 1:
+            Pa, Pc, Pg, Pt = shuffle_dna(dna_parameters['seq_size'], i)
+        elif dna_parameters['shuffle_opt'] == 2:
+            Pa, Pc, Pg, Pt = shuffle_dna2(dna_parameters['seq_size'], i)
         r = nu.random.random()
         # create clumps of CG to create CpG islands, degree of clumpness is
-        # based on Pclump
-        if nu.random.random() <= Pclump and len(dna) != 0 and dna[i - 1] == "C":
+        # based on pclump
+        if nu.random.random() <= dna_parameters['pclump'] and len(dna) != 0 and dna[i - 1] == "C":
             dna.append("G")
         elif r <= Pa / 100:
             dna.append("A")
