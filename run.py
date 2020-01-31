@@ -6,13 +6,12 @@ from libprep.coverage import seq, mv_coverage, gc_mv_avg, evenness
 from Bio import SeqIO
 import time
 import yaml
-from pprint import pprint
 
 # load parameters
 with open(r'parameters.yaml') as file:
     parameters = yaml.load(file, Loader=yaml.FullLoader)
-print "Parameters:"
-pprint(parameters)
+print "\nParameters:\n"
+print yaml.dump(parameters)
 
 if ".fa" in parameters['sequence']:
     # utilise fasta file
