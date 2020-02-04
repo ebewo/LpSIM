@@ -1,4 +1,4 @@
-from __future__ import division
+
 import numpy as nu
 import copy
 
@@ -81,5 +81,5 @@ def ligate_dna(p,frags):
 
     f_lig = ["TAD", "TND", "NAD", "NND"]
     ligated_frags = [x for x in ligated_frags if x[1][7] in f_lig]
-    print "Ligation complete!"
+    print("Ligation complete!")
     return ligated_frags

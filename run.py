@@ -2,7 +2,7 @@ import numpy as nu
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from libprep.coverage import seq, mv_coverage, gc_mv_avg, evenness
+from .libprep.coverage import seq, mv_coverage, gc_mv_avg, evenness
 from Bio import SeqIO
 import time
 import yaml
@@ -10,18 +10,18 @@ import yaml
 # load parameters
 with open(r'parameters.yaml') as file:
     parameters = yaml.load(file, Loader=yaml.FullLoader)
-print "\nParameters:\n"
-print yaml.dump(parameters)
+print("\nParameters:\n")
+print(yaml.dump(parameters))
 
 if ".fa" in parameters['sequence']:
     # utilise fasta file
     record = SeqIO.read(parameters['sequence'], "fasta")
-    print "Input sequence: "+str(record.name)
+    print("Input sequence: "+str(record.name))
     dna = str(record.seq)
 elif ".txt" in parameters['sequence']:
     # utilise simulated DNA
     dna_filename = parameters['sequence']
-    print "Input sequence: "+dna_filename[10:-4]
+    print("Input sequence: "+dna_filename[10:-4])
     file = open(dna_filename, "r")
     dna = file.read()
 else:
@@ -50,7 +50,7 @@ ax.xaxis.labelpad =10
 plt.title("Evenness of coverage = "+str(E))
 ax5 = fig1.add_subplot(gs[1,:])
 ax.tick_params(labelbottom=False)  
-x = range(len(moving_coverage))
+x = list(range(len(moving_coverage)))
 extent = [x[0]-(x[1]-x[0])/2., x[-1]+(x[1]-x[0])/2.,0,1]
 ax5.imshow(nu.asarray(GC)[nu.newaxis,:], cmap="jet", aspect="auto", extent=extent)
 ax5.set_yticks([])
@@ -63,7 +63,7 @@ timestr = time.strftime("%Y%m%d-%H%M%S")
 df_coverage.to_csv('results/coverage_'+timestr+'.csv', index = False)
 df_moving_coverage.to_csv('results/moving_coverage_'+timestr+'.csv', index = False)
 fig1.savefig('results/coverage_'+timestr+'.png')
-print "Coverage files generated"
+print("Coverage files generated")
 
 # print evenness of coverage
-print "Evenness of coverage = "+str(E)
+print("Evenness of coverage = "+str(E))

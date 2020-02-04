@@ -1,4 +1,4 @@
-from __future__ import division
+
 from Bio.Seq import Seq
 from Bio.SeqUtils import MeltingTemp as mt
 import copy
@@ -30,7 +30,7 @@ def PCR(tmp, el_tmp, cycles, ligated_frags, sd_pcr):
         c_count = 0
         d_count = 0
 
-        for j in xrange(cycles):
+        for j in range(cycles):
             cc = []
             c_count += 1
 
@@ -87,5 +87,5 @@ def PCR(tmp, el_tmp, cycles, ligated_frags, sd_pcr):
                         n_elnd += 1
             else:
                 n_pcrd += 1
-    print "PCR complete!"
+    print("PCR complete!")
     return PCR.pcrd_frags, PCR.pcrd_fragments_cov

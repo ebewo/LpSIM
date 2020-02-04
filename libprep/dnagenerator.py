@@ -1,4 +1,4 @@
-from __future__ import division
+
 import numpy as nu
 
 def shuffle_dna(Dsize, i):
@@ -32,7 +32,7 @@ def generate_dna(dna_parameters):
     Pg = (dna_parameters['GC'] / 2) + Pc
     Pt = Pa + Pg
 
-    for i in xrange(dna_parameters['seq_size']):
+    for i in range(dna_parameters['seq_size']):
         if dna_parameters['shuffle_opt'] == 1:
             Pa, Pc, Pg, Pt = shuffle_dna(dna_parameters['seq_size'], i)
         elif dna_parameters['shuffle_opt'] == 2:

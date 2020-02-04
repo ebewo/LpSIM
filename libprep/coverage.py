@@ -1,4 +1,4 @@
-from __future__ import division
+
 import numpy as nu
 from libprep.fragmentation import fragment_dna
 from libprep.pcr import PCR
@@ -24,11 +24,11 @@ def raw_cov(dna, pfrags):
 
     # multi process coverage counter
     pool = mp.Pool(processes=psutil.cpu_count(logical = False))
-    args_gen = [[pfrags,x] for x in xrange(len(dna))]
+    args_gen = [[pfrags,x] for x in range(len(dna))]
     raw_cv = pool.map(mp_count_wrapper, args_gen)
     pool.close()
 
-    print "Coverage analysyis 1 complete!"
+    print("Coverage analysyis 1 complete!")
 
     return raw_cv
 
@@ -36,7 +36,7 @@ def raw_cov(dna, pfrags):
 def mv_avg_cov(cov, n):
 
     mov_cv = []
-    for i in xrange(len(cov)-n):
+    for i in range(len(cov)-n):
         start1 = min(i,len(cov)-n) 
         stop2 = min(len(cov), i + n)
         start2 = int(stop2-40)
@@ -46,13 +46,13 @@ def mv_avg_cov(cov, n):
         window = [window1,window2]
         avg = nu.mean(window)
         mov_cv.append(avg)
-    print "Coverage analysis 2 complete!"
+    print("Coverage analysis 2 complete!")
 
     return mov_cv
 
 def gc_mv_avg(var_dict):
     result = []
-    for i in xrange(len(var_dict['dna'])-var_dict['window']):
+    for i in range(len(var_dict['dna'])-var_dict['window']):
     	start1 = min(i,len(var_dict['dna'])-var_dict['window'])
         stop2 = min(len(var_dict['dna']), i + var_dict['window'])
         start2 = int(stop2-40)
@@ -65,7 +65,7 @@ def gc_mv_avg(var_dict):
         GC = nu.mean(window)
         result.append(GC)
 
-    print "GC analysis complete!"
+    print("GC analysis complete!")
 
     return result
 
