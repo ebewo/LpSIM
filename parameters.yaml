@@ -1,4 +1,4 @@
-sequence: "sequences/phix.fasta" # input sequence
+sequence: "sequences/phiX.fasta" # input sequence
 mu_frags: 300 # mean of fragment size distributiom
 sd_frags: 30 # standard deviation of fragment size distribution
 no_frags: 5000 # number of fragments
