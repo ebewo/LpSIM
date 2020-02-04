@@ -1,4 +1,4 @@
-from .libprep.dnagenerator import generate_dna
+from libprep.dnagenerator import generate_dna
 import numpy as nu
 import yaml
 

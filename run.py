@@ -2,7 +2,7 @@ import numpy as nu
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import gridspec
-from .libprep.coverage import seq, mv_coverage, gc_mv_avg, evenness
+from libprep.coverage import seq, mv_coverage, gc_mv_avg, evenness
 from Bio import SeqIO
 import time
 import yaml

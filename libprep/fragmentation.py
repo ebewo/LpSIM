@@ -1,4 +1,3 @@
-
 import numpy as nu
 
 def bias_counter(x):

@@ -1,4 +1,3 @@
-
 import numpy as nu
 
 def shuffle_dna(Dsize, i):
