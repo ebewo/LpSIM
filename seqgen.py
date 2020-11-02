@@ -9,4 +9,4 @@ print("\nParameters:\n")
 print(yaml.dump(parameters))
 dna = generate_dna(parameters)
 
-print("Sequence genrated!")
+print("Sequence generated!")
